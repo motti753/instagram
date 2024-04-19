@@ -7,6 +7,7 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 gem "dartsass-rails"
 gem "haml-rails"
 gem "annotate"
+gem "devise"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
