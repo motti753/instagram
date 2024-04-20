@@ -1,21 +1,27 @@
-%h2 Sign up
+%header.header
+  = image_tag 'UI Bars/Status Bars/Black Base.png', class:'login_head_upper'
+  = image_tag 'Rectangle.png', class:'login_head'
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = render "devise/shared/error_messages", resource: resource
   .field
-    = f.label :email
+    = f.label :account, 'Account'
     %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
+    = f.text_field :account, autofocus: true, autocomplete: "account", class: 'form-field'
   .field
-    = f.label :password
+    = f.label :email, 'Email'
+    %br/
+    = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-field'
+  .field
+    = f.label :password, 'Password'
     - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
+      -# %em
+      -#   (#{@minimum_password_length} characters minimum)
     %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
+    = f.password_field :password, autocomplete: "new-password", class: 'form-field'
+  -# .field
+  -#   = f.label :password_confirmation, 'Password Confirmation'
+  -#   %br/
+  -#   = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-field'
   .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+    = f.submit "CREATE ACCOUNT", class:'btn'
+-# = render "devise/shared/links"

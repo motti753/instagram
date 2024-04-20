@@ -1,17 +1,19 @@
-%h2 Log in
+%header.header
+  = image_tag 'UI Bars/Status Bars/Black Base.png', class:'login_head_upper'
+  = image_tag 'Rectangle.png', class:'login_head'
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .field
-    = f.label :email
+    = f.label :email, 'Email'
     %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
+    = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-field'
   .field
-    = f.label :password
+    = f.label :password, 'Password'
     %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
+    = f.password_field :password, autocomplete: "current-password", class: 'form-field'
+  -# - if devise_mapping.rememberable?
+  -#   .field
+  -#     = f.check_box :remember_me
+  -#     = f.label :remember_me
   .actions
-    = f.submit "Log in"
+    = f.submit "LOGIN", class: 'btn'
 = render "devise/shared/links"

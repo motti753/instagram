@@ -1,0 +1,29 @@
+@use 'variables' as var;
+
+.form-title {
+  margin: 2em 1em 0 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 1em;
+  width: 100%;
+
+  label {
+    align-self: flex-start;
+  }
+
+  .form-field {
+    border: none;
+    border-bottom: 1px solid #000;
+    height: 1.5em;
+    padding: 4px var.$primary-pd var.$primary-pd var.$primary-pd;
+    width: 90%;
+  }
+
+  .form-field.field-cust{
+    height: 10em;
+  }
+}

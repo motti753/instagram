@@ -1,0 +1,21 @@
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 90vh;
+  width: 80vw;
+}
+
+.btn {
+  background: #ffe600;
+  border: none;
+  color: #000;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: center;
+  height: 3.5em;
+  padding: 8px 0;
+  width: 100%;
+}
