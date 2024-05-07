@@ -8,6 +8,7 @@ gem "dartsass-rails"
 gem "haml-rails"
 gem "annotate"
 gem "devise"
+gem 'active_decorator'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -51,6 +52,8 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do

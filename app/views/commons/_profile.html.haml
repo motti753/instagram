@@ -1,0 +1,24 @@
+.profile_header
+  = image_tag 'Tabs.png'
+  %p.profile_name
+    = profile.user_name(profile)
+
+.container
+  .profilePage_user
+    .profilePage_user_image#profile-show{data: {profile_user_id: profile.user_id, current_user_id: current_user.id}}
+      - if (current_user.id == profile.user_id)
+        = image_tag profile.avatar_image
+        .profile_edit
+          = link_to 'Edit', edit_profile_path(profile.user_id)
+      - else
+        = image_tag profile.avatar_image
+    .profilePage_user_content
+      .user_posts
+        %p.posts 44
+        %p Posts
+      .user_followers
+        %p.followers 110
+        %p Followers
+      .user_following
+        %p.following 44
+        %p Following

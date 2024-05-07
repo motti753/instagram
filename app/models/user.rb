@@ -24,5 +24,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  has_one_attached :avatar
+  has_one :profile, dependent: :destroy
+  before_create :prepare_profile
+
+  # ユーザに紐づくプロフィールがある場合、表示。
+  # ない場合、新たにレコードを作成する
+  def prepare_profile
+    profile || build_profile
+  end
+
 end
