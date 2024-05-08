@@ -1,0 +1,20 @@
+= link_to submission_path(id: submission.id) do
+  .card
+    .card_image
+      - if submission.images&.attached?
+        .card_image
+          - submission.images.each do |image|
+            = image_tag image
+    .card_content
+      .card_content
+        = submission.content
+      .card_heart
+        = image_tag 'before_like.png'
+        %span
+          // 後にlikeテーブルを作成し、置き換える
+          -# = submission.like_count
+      .card_detail
+        = image_tag submission.user.avatar_image
+        %div
+          %p= article.author_name
+          %p= article.display_created_at
