@@ -9,6 +9,7 @@ gem "haml-rails"
 gem "annotate"
 gem "devise"
 gem 'active_decorator'
+gem 'image_processing'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
