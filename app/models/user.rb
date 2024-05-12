@@ -25,7 +25,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_one :profile, dependent: :destroy
-  has_one :submission, dependent: :destroy
+  has_many :submissions, dependent: :destroy
   before_create :prepare_profile
 
   # ユーザに紐づくプロフィールがある場合、表示。

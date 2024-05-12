@@ -1,5 +1,6 @@
 @use 'variables' as var;
 
+/* -------------- common ---------- */
 .form-title {
   margin: 2em 1em 0 0;
 }
@@ -27,3 +28,61 @@
     height: 10em;
   }
 }
+/* -------------- common ---------- */
+
+/* ------------ submission -------- */
+/* submission_header(投稿新規作成ヘッダー) */
+.submission_create_head {
+  display: flex;
+  justify-content: space-around;
+  font-weight: 600;
+
+  .cansel {
+    color: #2f80ed;
+  }
+
+  .create {
+    color: #bdbdbd;
+  }
+
+  .cansel:hover,
+  .post:hover {
+    opacity: .4;
+    cursor: pointer;
+  }
+}
+/* submission_header(投稿新規作成ヘッダー) */
+
+/* submission_form(formフィールド) */
+.submission_content,
+.submission_files {
+  margin-top: 16px;
+}
+
+#content::placeholder {
+  opacity: .4;
+  font-size: 16px;
+}
+
+.submission_files {
+  .submission_files_btn {
+    display: flex;
+    gap: .3em;
+    border: 1px solid #bdbdbd;
+    border-radius: 8px;
+    background: none;
+    width: 90px;
+    align-content: center;
+    justify-content: center;
+  }
+  .submission_files_btn:hover {
+    opacity: .4;
+    cursor: pointer;
+  }
+
+  #images {
+    display: none;
+  }
+}
+/* submission_form(formフィールド) */
+/* ------------ submission -------- */

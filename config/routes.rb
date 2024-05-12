@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   # root to: "home#index"
   root to: 'submissions#index'
-  resources :submission
+  resources :submissions
 
   # application.html.hamlで"turbo_method: :destroy"を指定していてもnomethodErrorが出るため。
   devise_scope :user do

@@ -1,0 +1,21 @@
+.container
+  %ul
+    - @submission.errors.full_messages.each do |message|
+      %li= message
+  .sibmission_create_head
+    %p.cancel Cance
+      = link_to submission_index_path
+    %p.status Status
+    %p.create Post
+      = link_to submission_path(current_user.id)
+  .contributor
+    .avatar
+      = image_tag submission.user.avatar_image
+    .sub_content
+      %p=submission.user.account
+  = form_with(model: @submission, local: true, url:submission_path(current_user.id), data:{turbo_method: :post})  do |f|
+    %div.submission_content
+      = f.text :content, class: 'form-field', placeholder: 'What's on your mind ?'
+    %div.submission_files
+      = f.label :images, '+ Album'
+      = f.file_field :images, class: 'images', multiple: true
