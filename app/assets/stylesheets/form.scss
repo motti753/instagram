@@ -16,17 +16,17 @@
     align-self: flex-start;
   }
 
-  .form-field {
-    border: none;
-    border-bottom: 1px solid #000;
-    height: 1.5em;
-    padding: 4px var.$primary-pd var.$primary-pd var.$primary-pd;
-    width: 90%;
-  }
-
   .form-field.field-cust{
     height: 10em;
   }
+}
+
+.form-field {
+  border: none;
+  border-bottom: 1px solid #000;
+  height: 1.5em;
+  padding: 4px var.$primary-pd var.$primary-pd var.$primary-pd;
+  width: 90%;
 }
 /* -------------- common ---------- */
 
@@ -37,7 +37,7 @@
   justify-content: space-around;
   font-weight: 600;
 
-  .cansel {
+  .cancel {
     color: #2f80ed;
   }
 
@@ -45,7 +45,7 @@
     color: #bdbdbd;
   }
 
-  .cansel:hover,
+  .cancel:hover,
   .post:hover {
     opacity: .4;
     cursor: pointer;
@@ -56,10 +56,10 @@
 /* submission_form(formフィールド) */
 .submission_content,
 .submission_files {
-  margin-top: 16px;
+  margin: 16px;
 }
 
-#content::placeholder {
+#submission_content::placeholder {
   opacity: .4;
   font-size: 16px;
 }
@@ -80,7 +80,7 @@
     cursor: pointer;
   }
 
-  #images {
+  #submission_images {
     display: none;
   }
 }
