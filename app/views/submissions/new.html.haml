@@ -1,0 +1,20 @@
+.container
+  %ul
+    - @submission.errors.full_messages.each do |message|
+      %li= message
+  .submission_create_head
+    = link_to 'Cance', submissions_path, class: 'cancel'
+    %p.status Status
+    = link_to 'Post', submissions_path(current_user.id), class: 'create'
+  .contributor
+    .avatar
+      = image_tag @submission.user.avatar_image
+    .sub_content
+      %p=@submission.user.account
+  = form_with(model: @submission, local: true, url:submissions_path(current_user.id), data:{turbo_method: :post})  do |f|
+    %div.submission_content
+      = f.text_area :content, class: 'form-field', placeholder: 'Whats on your mind ?'
+    %div.submission_files
+      = f.label :images, '+ Album', class: 'submission_files_btn'
+      = f.file_field :images, class: 'images', multiple: true
+    = f.submit '保存', class: 'btn'

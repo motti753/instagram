@@ -1,0 +1,22 @@
+= link_to submission_path(id: submission.id) do
+  .card
+    .contributor
+      .avatar
+        = image_tag submission.user.avatar_image
+      .sub_content
+        %p=submission.user.account
+        %p.sub_content_grey 3 hours ago
+    .card_images
+      - submission.images.each do |image|
+        = image_tag image
+    .card_btn
+      .card_heart
+        = image_tag 'before_like.png'
+      .card_comment
+        = image_tag 'Comment.png'
+      .card_social
+        = image_tag 'share.png'
+    .card_desc
+      %p=submission.content
+      %p="#{submission.user.account} Summer holiday :3"
+

@@ -1,5 +1,6 @@
 @use 'variables' as var;
 
+/* -------------- common ---------- */
 .form-title {
   margin: 2em 1em 0 0;
 }
@@ -15,15 +16,73 @@
     align-self: flex-start;
   }
 
-  .form-field {
-    border: none;
-    border-bottom: 1px solid #000;
-    height: 1.5em;
-    padding: 4px var.$primary-pd var.$primary-pd var.$primary-pd;
-    width: 90%;
-  }
-
   .form-field.field-cust{
     height: 10em;
   }
 }
+
+.form-field {
+  border: none;
+  border-bottom: 1px solid #000;
+  height: 1.5em;
+  padding: 4px var.$primary-pd var.$primary-pd var.$primary-pd;
+  width: 90%;
+}
+/* -------------- common ---------- */
+
+/* ------------ submission -------- */
+/* submission_header(投稿新規作成ヘッダー) */
+.submission_create_head {
+  display: flex;
+  justify-content: space-around;
+  font-weight: 600;
+
+  .cancel {
+    color: #2f80ed;
+  }
+
+  .create {
+    color: #bdbdbd;
+  }
+
+  .cancel:hover,
+  .post:hover {
+    opacity: .4;
+    cursor: pointer;
+  }
+}
+/* submission_header(投稿新規作成ヘッダー) */
+
+/* submission_form(formフィールド) */
+.submission_content,
+.submission_files {
+  margin: 16px;
+}
+
+#submission_content::placeholder {
+  opacity: .4;
+  font-size: 16px;
+}
+
+.submission_files {
+  .submission_files_btn {
+    display: flex;
+    gap: .3em;
+    border: 1px solid #bdbdbd;
+    border-radius: 8px;
+    background: none;
+    width: 90px;
+    align-content: center;
+    justify-content: center;
+  }
+  .submission_files_btn:hover {
+    opacity: .4;
+    cursor: pointer;
+  }
+
+  #submission_images {
+    display: none;
+  }
+}
+/* submission_form(formフィールド) */
+/* ------------ submission -------- */

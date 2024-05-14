@@ -1,0 +1,103 @@
+.header .main_head_upper {
+  position: absolute;
+  top: -10px;
+  width: 90%;
+  height: 70px;
+  object-fit: fill;
+}
+
+.card {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+/* submission_head(投稿ヘッダー) */
+.submission_head {
+  margin: 2em 0;
+
+  .create_link {
+    img {
+      height: 32px;
+      width: 32px;
+    }
+    img:hover {
+      opacity: .4;
+    }
+  }
+}
+/* submission_head(投稿ヘッダー) */
+
+/* contributor(投稿者情報) */
+.contributor {
+  display: flex;
+  gap: 1em;
+
+  .avatar {
+    img {
+      height: 64px;
+      width: 64px;
+    }
+  }
+  .sub_content {
+    align-self: center;
+
+    &_grey {
+      color: #bdbdbd;
+    }
+  }
+}
+/* contributor(投稿者情報) */
+
+/* submission_img(投稿画像) */
+.card_images {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: flex-start;
+  justify-content: flex-start;
+  gap: 1em;
+  height: 400px;
+  width: 100vw;
+  /* flex: 1 20px; */
+  margin: 0 auto;
+
+  img {
+    align-self: stretch;
+    object-fit: fill;
+    height: 40%;
+    width: 40%;
+  }
+
+  img:first-child {
+    height: 100%;
+    width: 40%;
+  }
+}
+/* submission_img(投稿画像) */
+
+/* btn(いいね、コメント、ソーシャルボタン) */
+.card_btn {
+  display: flex;
+  gap: 1em;
+
+  .card_heart,
+  .card_comment,
+  .card_social {
+    img {
+      height: 25px;
+      width: 25px;
+    }
+    img:hover {
+      opacity: .4;
+    }
+  }
+}
+/* btn(いいね、コメント、ソーシャルボタン) */
+
+/* card_desc(投稿文、投稿日付) */
+.card_desc p {
+  font-size: 1em;
+}
+/* card_desc(投稿文、投稿日付) */
