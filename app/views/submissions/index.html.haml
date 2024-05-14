@@ -1,6 +1,7 @@
 .container
+  .submission_head
+    .create_link
+      = link_to new_submission_path do
+        = image_tag 'UI Bars/Status Bars/photo-camera (1).png'
   - @submissions.each do |submission|
     = render 'commons/submission', submission: submission
-  -# = link_to new_article_path do
-  -#   .float_btn
-  -#     %i.fa.fa-plus

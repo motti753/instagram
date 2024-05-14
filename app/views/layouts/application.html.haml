@@ -9,10 +9,6 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   %body
-    -# %p.notice
-    -#   = notice
-    -# %p.alert
-    -#   = alert
     %header.main-head
       = image_tag 'UI Bars/Status Bars/Black Base_main.png', class: 'main_head_upper'
     - if user_signed_in?

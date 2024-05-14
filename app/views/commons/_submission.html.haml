@@ -1,15 +1,11 @@
 = link_to submission_path(id: submission.id) do
   .card
-    .submission_head
-      .create_link
-        = image_tag 'UI Bars/Status Bars/photo-camera (1).png'
-        = link_to new_submission_path
     .contributor
       .avatar
         = image_tag submission.user.avatar_image
       .sub_content
         %p=submission.user.account
-        %p 3 hours ago
+        %p.sub_content_grey 3 hours ago
     .card_images
       - submission.images.each do |image|
         = image_tag image
@@ -22,5 +18,5 @@
         = image_tag 'share.png'
     .card_desc
       %p=submission.content
-      %p=submission.user.account Summer holiday :3
+      %p="#{submission.user.account} Summer holiday :3"
 

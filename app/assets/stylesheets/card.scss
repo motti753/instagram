@@ -42,6 +42,10 @@
   }
   .sub_content {
     align-self: center;
+
+    &_grey {
+      color: #bdbdbd;
+    }
   }
 }
 /* contributor(投稿者情報) */
