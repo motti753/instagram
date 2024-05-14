@@ -2,7 +2,7 @@ class SubmissionsController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @submissions = Submission.all
+    @submissions = Submission.all.order('created_at DESC')
   end
 
   def new
