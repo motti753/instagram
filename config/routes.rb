@@ -20,6 +20,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api, defaults: {format: :json} do
+    scope 'submissions/:submission_id' do
+      resource :like, only: [:create, :destroy, :show]
+    end
+  end
+
   # Defines the root path route ("/")
   # root "posts#index"
 end

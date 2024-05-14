@@ -35,4 +35,9 @@ class User < ApplicationRecord
     profile || build_profile
   end
 
+  # like showでlikeテーブルにログインユーザ・投稿のlikeがあるか判定結果を戻り値とする
+  def has_liked?(submission)
+    likes.exists?(submission_id: submission.id)
+  end
+
 end
