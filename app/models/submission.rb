@@ -15,4 +15,5 @@
 class Submission < ApplicationRecord
   belongs_to :user
   has_many_attached :images #画像複数枚投稿
+  has_many :likes, dependent: :destroy
 end
