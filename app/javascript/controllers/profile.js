@@ -54,4 +54,4 @@ window.$ = jquery;
 //   })
 // })
 
-export default profile
+// export default profile

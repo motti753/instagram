@@ -1,4 +1,5 @@
-= link_to submission_path(id: submission.id) do
+= link_to submission_path(id: submission.id), remote: true do
+  -# .submission#submission-show{data: {submission_id: submission.id}}
   .submission#submission-show{data: {submission_id: submission.id}}
     .card
       .contributor
@@ -11,13 +12,13 @@
         - submission.images.each do |image|
           = image_tag image
       .card_btn
-        -# - if user_signed_in?
-        -#   .card_heart.hidden.active-heart
-        -#     = image_tag 'like.png'
-        -#   .card_heart.hidden.inactive-heart
-        -#     = image_tag 'before_like.png'
-        .card_heart
-          = image_tag 'before_like.png'
+        - if user_signed_in?
+          - if current_user.has_liked?(submission)
+            .card_heart.active-heart
+              = image_tag 'like.png'
+          - else
+            .card_heart.inactive-heart
+              = image_tag 'before_like.png'
         .card_comment
           = image_tag 'Comment.png'
         .card_social

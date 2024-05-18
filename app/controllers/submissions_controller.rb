@@ -3,6 +3,7 @@ class SubmissionsController < ApplicationController
 
   def index
     @submissions = Submission.all.order('created_at DESC')
+    # submissionsId = @submissions.pluck(:id)
   end
 
   def new
@@ -17,6 +18,10 @@ class SubmissionsController < ApplicationController
       flash.now[:error] = '保存できません。コンテンツと画像を確かめてください'
       render :new
     end
+  end
+
+  def show
+    @submission = Submission.find(params[:id])
   end
 
   private
