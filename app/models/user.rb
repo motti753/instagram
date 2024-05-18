@@ -26,12 +26,18 @@ class User < ApplicationRecord
   
   has_one :profile, dependent: :destroy
   has_many :submissions, dependent: :destroy
+  has_many :likes, dependent: :destroy
   before_create :prepare_profile
 
   # ユーザに紐づくプロフィールがある場合、表示。
   # ない場合、新たにレコードを作成する
   def prepare_profile
     profile || build_profile
+  end
+
+  # like showでlikeテーブルにログインユーザ・投稿のlikeがあるか判定結果を戻り値とする
+  def has_liked?(submission)
+    likes.exists?(submission_id: submission.id)
   end
 
 end
