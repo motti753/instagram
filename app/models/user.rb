@@ -27,6 +27,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_many :submissions, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   before_create :prepare_profile
 
   # ユーザに紐づくプロフィールがある場合、表示。
