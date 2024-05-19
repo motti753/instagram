@@ -20,7 +20,8 @@
             .card_heart.inactive-heart
               = image_tag 'before_like.png'
         .card_comment
-          = image_tag 'Comment.png'
+          = link_to api_comments_path(submission.id) do
+            = image_tag 'Comment.png'
         .card_social
           = image_tag 'share.png'
       .card_desc

@@ -1,5 +1,4 @@
 class Api::LikesController < Api::ApplicationController
-  before_action :authenticate_user!
 
   def create
     submission = Submission.find(params[:submission_id])

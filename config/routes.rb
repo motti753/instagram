@@ -20,9 +20,16 @@ Rails.application.routes.draw do
     end
   end
 
+  # namespace :api do
+  #   scope 'submissions/:submission_id' do
+  #     resources :comments, only: [:index]
+  #   end
+  # end
+
   namespace :api, defaults: {format: :json} do
     scope 'submissions/:submission_id' do
       resource :like, only: [:create, :destroy, :show]
+      resources :comments, only: [:create, :index]
     end
   end
 
