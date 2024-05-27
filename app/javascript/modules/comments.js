@@ -8,10 +8,14 @@ const handleCommentForm = () => {
   $('.comment-text-area').removeClass('hidden')
 }
 
-const appendNewComment = (comment) => {
-  var com = `${comment.content}`
-  $('.comments-container').append(
-    `<div class='article_comment'><p>${escape(com)}</p></div>`
+const appendNewComment = (content, avatar) => {
+  // var com = `${comment.content}`
+  // var avatar = `${comment.avatar}`
+  $('.comments_container').append(
+    `<div class='comment_group'>
+      <img src=${avatar}>
+      <p>${escape(content)}</p>
+    </div>`
   )
 }
 // comment ------------------------------ //

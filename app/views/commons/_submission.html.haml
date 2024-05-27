@@ -21,7 +21,7 @@
               = image_tag 'before_like.png'
         .card_comment
           = link_to api_comments_path(submission.id) do
-            = image_tag 'Comment.png'
+            = image_tag 'Comment.png', class: 'comment_link'
         .card_social
           = image_tag 'share.png'
       .card_desc

@@ -59,28 +59,39 @@ document.addEventListener('turbo:load', () => {
   // like ------------------------------ //
 
   // comment一覧を表示
-  axios.get(`/api/submissions/${submissionId}/comments`)
-  .then((response) => {
-    const comments = response.data
-    comments.forEach((comment) => {
-      appendNewComment(comment)
-    })
-  })
+  const comment1 = document.getElementById('comment-show1')
+  const comment2 = document.getElementById('comment-show2')
+  console.log(comment1)
+  console.log(comment2)
 
-  // add-comment-buttonが押されたら、comments_controller createを呼び出す
-  $('.add-comment-button').on('click', () => {
-  const content = $('#comment_content').val()
-  if (!content){
-    window.alert('コメントを入力してください')
-  }else {
-    axios.post(`/api/submissions/${submissionId}/comments`, {
-      comment: {content: content}
-    })
-      .then((response) => {
-        const comment = response.data
-        appendNewComment(comment)
-        $('#comment_content').val('')
-      })
+  const commentContent = JSON.parse(comment1.dataset.commentContent)
+  console.log(Array.isArray(commentContent))
+  const commentAvatar = JSON.parse(comment2.dataset.avatar)
+  console.log(commentContent)
+  console.log(commentAvatar)
+  for(let i = 0; i < commentContent.length; i++){
+    appendNewComment(commentContent[i], commentAvatar[i])
   }
+
+  // comment-btnが押されたら、comments_controller createを呼び出す
+  $('.comment_btn').on('click', () => {
+    const comment3 = document.getElementById
+    ('comment-show3')
+    const commentUser = comment3.dataset.userId
+    const content = $('#comment_content').val()
+    if (!content){
+      window.alert('コメントを入力してください')
+    }else {
+      axios.post(`/api/submissions/${submissionId}/comments`, {
+        comment: {content: content, user_id: commentUser}
+      })
+        .then((response) => {
+          const comment = response.data
+          // appendNewComment(comment)
+          console.log(comment)
+          $('#comment_content').val('')
+        })
+    }
+  })
 })
 // main ------------------------------ //

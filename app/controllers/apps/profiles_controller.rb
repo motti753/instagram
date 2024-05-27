@@ -2,14 +2,6 @@ class Apps::ProfilesController < Apps::ApplicationController
 
   def show
     @profile = Profile.find(params[:profile_id])
-    # @profile = user.prepare_profile
-    # # @profile.update(avatar: "#{user.avatar_image}")
-    # if @profile.save
-    #   redirect_to profile_path, notice: 'プロフィール更新！'
-    # else
-    #   flash,now[:error] = '更新できませんでした'
-    #   render profile_path
-    # end
   end
 
   def edit
@@ -30,7 +22,6 @@ class Apps::ProfilesController < Apps::ApplicationController
 
   private
   def profile_params
-    # Binding.pry
     params.require(:profile).permit(:avatar)
   end
 end

@@ -1,6 +1,12 @@
-.container
-  .comments-container aaaaaa
-  .comment-text-area
-    .add-comment-button
-      = image_tag 'Comment.png'
-      = text_area_tag :comment_content, '', class: 'sm'
+.comment
+  .comment_head
+    .submission#submission-show{data: {submission_id: @submission.id}}
+    .comment_data#comment-show1{data: {comment_content: @contents}}
+    .comment_data#comment-show2{data: {avatar: @avatar}}
+    .comment_data#comment-show3{data: {user_id: current_user.id}}
+    = image_tag 'Tabs.png', class: 'back_img'
+    %p Comment
+  .comments_container
+  .new_comment
+    = image_tag 'Comment.png', class: 'comment_btn'
+    = text_area_tag :comment_content, '', class: 'sm'
