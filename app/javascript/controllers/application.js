@@ -22,6 +22,11 @@ import {
   listenActiveHeartEvent
 }from '../modules/handle_heart'
 
+import {
+  handleCommentForm,
+  appendNewComment
+}from '../modules/comments'
+
 // like ------------------------------ //
 // article/show.html.hamlで非表示にしているheartをhas_likedの戻り値によって外す
 const handleHeartDisplay = (hasLiked) => {
@@ -30,7 +35,7 @@ const handleHeartDisplay = (hasLiked) => {
   }else {
     $('.inactive-heart').removeClass('hidden')
   }
-  console.log(hasLiked)
+  console.log(`like: ${hasLiked}`)
 }
 // like ------------------------------ //
 
@@ -52,5 +57,36 @@ document.addEventListener('turbo:load', () => {
   listenInactiveHeartEvent(submissionId)
   listenActiveHeartEvent(submissionId)
   // like ------------------------------ //
+
+  // comment一覧を表示
+  const comment1 = document.getElementById('comment-show1')
+  const comment2 = document.getElementById('comment-show2')
+
+  const commentContent = JSON.parse(comment1.dataset.commentContent)
+  const commentAvatar = JSON.parse(comment2.dataset.avatar)
+  for(let i = 0; i < commentContent.length; i++){
+    appendNewComment(commentContent[i], commentAvatar[i])
+  }
+
+  // comment-btnが押されたら、comments_controller createを呼び出す
+  $('.comment_btn').on('click', () => {
+    const comment3 = document.getElementById
+    ('comment-show3')
+    const commentUser = comment3.dataset.userId
+    const content = $('#comment_content').val()
+    if (!content){
+      window.alert('コメントを入力してください')
+    }else {
+      axios.post(`/api/submissions/${submissionId}/comments`, {
+        comment: {content: content, user_id: commentUser}
+      })
+        .then((response) => {
+          const comment = response.data
+          // appendNewComment(comment)
+          console.log(comment)
+          $('#comment_content').val('')
+        })
+    }
+  })
 })
 // main ------------------------------ //

@@ -1,0 +1,5 @@
+%p #{@user.email}さん
+%p 以下のコメントでメンションされました
+%p #{@comment.content}
+
+= link_to 'プロフィールを確認する', profile_url(profile_id: @user.id)
