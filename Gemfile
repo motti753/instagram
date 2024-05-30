@@ -10,6 +10,7 @@ gem "annotate"
 gem "devise"
 gem 'active_decorator'
 gem 'image_processing'
+gem 'sidekiq'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -60,6 +61,10 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  # メールを開くためのgem
+  gem 'letter_opener'
+  # ブラウザ上でメールの送信履歴を見るためのgem
+  gem 'letter_opener_web'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

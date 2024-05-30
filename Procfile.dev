@@ -1,2 +1,4 @@
+redis: bundle exec redis-server
+worker: bundle exec sidekiq -C config/sidekiq.yml
 web: bin/rails server -p 3200
 css: bin/rails dartsass:watch

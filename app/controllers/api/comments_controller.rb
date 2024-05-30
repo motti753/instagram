@@ -19,11 +19,23 @@ class Api::CommentsController < Api::ApplicationController
     submission = Submission.find(params[:submission_id])
     @comment = submission.comments.build(comment_params)
     @comment.save!
+
+    # ユーザ名がコメントに含まれているか確認
+    @userall = User.all
     render json: @comment
+    @userall.each do |user|
+      if(@comment.content.include?(user.account))
+        send_email(@userall.find(@comment.user_id), user, @comment)
+      end
+    end
   end
 
   private
   def comment_params
     params.require(:comment).permit(:content, :user_id)
+  end
+
+  def send_email(user, includeuser, comment)
+    CommentMailer.new_includeuser(user, includeuser, comment).deliver_now
   end
 end

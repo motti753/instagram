@@ -35,7 +35,7 @@ const handleHeartDisplay = (hasLiked) => {
   }else {
     $('.inactive-heart').removeClass('hidden')
   }
-  console.log(hasLiked)
+  console.log(`like: ${hasLiked}`)
 }
 // like ------------------------------ //
 
@@ -61,14 +61,9 @@ document.addEventListener('turbo:load', () => {
   // comment一覧を表示
   const comment1 = document.getElementById('comment-show1')
   const comment2 = document.getElementById('comment-show2')
-  console.log(comment1)
-  console.log(comment2)
 
   const commentContent = JSON.parse(comment1.dataset.commentContent)
-  console.log(Array.isArray(commentContent))
   const commentAvatar = JSON.parse(comment2.dataset.avatar)
-  console.log(commentContent)
-  console.log(commentAvatar)
   for(let i = 0; i < commentContent.length; i++){
     appendNewComment(commentContent[i], commentAvatar[i])
   }
