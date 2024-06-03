@@ -30,6 +30,46 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   before_create :prepare_profile
 
+  def avatar_image
+    # profileデータがある and profile.avatarがある
+    if profile.avatar&.attached?
+      avatar
+    else
+      'default-avatar.png'
+    end
+  end
+
+  # 自分がフォローしている人を探し出す
+  # has_many :代替え名, foreign_key: 'カラム名', class_name: 'テーブル名', dependent: :destroy
+  has_many :following_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
+  # user.followingsとすると、「自身のuser_id = follower_id」となっているレコードのfollowingカラムを取得する
+  has_many :followings, through: :following_relationships, source: :following
+
+  # 自分のフォロワーを探し出す
+  has_many :follower_relationships, foreign_key: 'following_id', class_name: 'Relationship', dependent: :destroy
+  # user.followingsとすると、「自身のuser_id = follower_id」となっているレコードのfollowingカラムを取得する
+  has_many :followers, through: :follower_relationships, source: :follower
+
+  # followControllerで使う、
+  # relationshipsテーブルにinsertするためのメソッド
+  def follow!(user)
+    user_id = get_user_id(user)
+    following_relationships.create!(following_id: user_id)
+  end
+
+  # unfollowControllerで使う、
+  # relationshipsテーブルにdestroyするためのメソッド
+  def unfollow!(user)
+    user_id = get_user_id(user)
+    relation = following_relationships.find_by!(following_id: user_id)
+    relation.destroy!
+  end
+
+  # profile.html.hamlで使用するrelationshipテーブルにレコードがあるかを判定する
+  def has_followed?(user)
+    following_relationships.exists?(following_id: user.id)
+  end
+
   # ユーザに紐づくプロフィールがある場合、表示。
   # ない場合、新たにレコードを作成する
   def prepare_profile
@@ -41,4 +81,12 @@ class User < ApplicationRecord
     likes.exists?(submission_id: submission.id)
   end
 
+  private
+  def get_user_id(user)
+    if user.is_a?(User)
+      user.id
+    else
+      user
+    end
+  end
 end

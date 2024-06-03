@@ -2,6 +2,7 @@ class Apps::ProfilesController < Apps::ApplicationController
 
   def show
     @profile = Profile.find(params[:profile_id])
+    @user = User.find(@profile.user_id)
   end
 
   def edit
