@@ -11,9 +11,6 @@
   %body
     %header.main-head
       = image_tag 'UI Bars/Status Bars/Black Base_main.png', class: 'main_head_upper'
-    - if user_signed_in?
-      .test
-        = link_to 'プロフィール', profile_path(profile_id: current_user.id)
     - if flash.present?
       .flash
         - flash.each do |key, value|

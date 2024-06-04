@@ -4,7 +4,8 @@
     .card
       .contributor
         .avatar
-          = image_tag submission.user.avatar_image
+          = link_to profile_path(profile_id: submission.user_id) do
+            = image_tag submission.user.avatar_image
         .sub_content
           %p=submission.user.account
           %p.sub_content_grey 3 hours ago

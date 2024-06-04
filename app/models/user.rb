@@ -81,6 +81,21 @@ class User < ApplicationRecord
     likes.exists?(submission_id: submission.id)
   end
 
+  def count_post(user)
+    submission_count = Submission.where(user_id: user.id)
+    submission_count.count
+  end
+
+  def count_follower(user)
+    follower = follower_relationships.where(following_id: user.id)
+    follower.count
+  end
+
+  def count_following(user)
+    following = following_relationships.where(follower_id: user.id)
+    following.count
+  end
+
   private
   def get_user_id(user)
     if user.is_a?(User)
