@@ -27,8 +27,8 @@
       .user_followers
         %p.followers
           = @user.count_follower(@user)
-        %p Followers
+        = link_to 'Followers', account_followers_path(account_id: @user.id)
       .user_following
         %p.following
           = @user.count_following(@user)
-        %p Following
+        = link_to 'Following', account_followings_path(account_id: @user.id)

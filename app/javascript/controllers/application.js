@@ -27,6 +27,10 @@ import {
   appendNewComment
 }from '../modules/comments'
 
+import {
+  append_relationship
+}from '../modules/relationship'
+
 // like ------------------------------ //
 // article/show.html.hamlで非表示にしているheartをhas_likedの戻り値によって外す
 const handleHeartDisplay = (hasLiked) => {
@@ -41,52 +45,65 @@ const handleHeartDisplay = (hasLiked) => {
 
 // main ------------------------------ //
 document.addEventListener('turbo:load', () => {
-  const submission = document.getElementById('submission-show')
-  console.log(submission)
+  const currentUrl = window.location.href;
+  if(currentUrl.includes('submissions')){
+    const submission = document.getElementById('submission-show')
+    const submissionId = submission.dataset.submissionId
+  
+    // like ------------------------------ //
+    axios.get(`/api/submissions/${submissionId}/like`)
+      .then((response) => {
+        const hasLiked = response.data.hasLiked
+        handleHeartDisplay(hasLiked)
+      })
+    // heartをinactive, activeと切り替える
+    listenInactiveHeartEvent(submissionId)
+    listenActiveHeartEvent(submissionId)
+    // like ------------------------------ //
 
-  const submissionId = submission.dataset.submissionId
-  console.log(submissionId)
-
-  // like ------------------------------ //
-  axios.get(`/api/submissions/${submissionId}/like`)
-    .then((response) => {
-      const hasLiked = response.data.hasLiked
-      handleHeartDisplay(hasLiked)
+    // comment-btnが押されたら、comments_controller createを呼び出す
+    $('.comment_btn').on('click', () => {
+      const comment3 = document.getElementById
+      ('comment-show3')
+      const commentUser = comment3.dataset.userId
+      const content = $('#comment_content').val()
+      if (!content){
+        window.alert('コメントを入力してください')
+      }else {
+        axios.post(`/api/submissions/${submissionId}/comments`, {
+          comment: {content: content, user_id: commentUser}
+        })
+          .then((response) => {
+            const comment = response.data
+            console.log(comment)
+            $('#comment_content').val('')
+          })
+      }
     })
-  // heartをinactive, activeと切り替える
-  listenInactiveHeartEvent(submissionId)
-  listenActiveHeartEvent(submissionId)
-  // like ------------------------------ //
+  }else if(currentUrl.includes('comment')){
+    // comment --------------------------- //
+    // comment一覧を表示
+    const comment1 = document.getElementById('comment-show1')
+    const comment2 = document.getElementById('comment-show2')
 
-  // comment一覧を表示
-  const comment1 = document.getElementById('comment-show1')
-  const comment2 = document.getElementById('comment-show2')
+    const commentContent = JSON.parse(comment1.dataset.commentContent)
+    const commentAvatar = JSON.parse(comment2.dataset.avatar)
+    for(let i = 0; i < commentContent.length; i++){
+      appendNewComment(commentContent[i], commentAvatar[i])
+    }
+    // comment --------------------------- //
+  }else {
+    // profile -------------------------- //
+    const profile1 = document.getElementById('profile-show1')
+    const profile2 = document.getElementById('profile-show2')
 
-  const commentContent = JSON.parse(comment1.dataset.commentContent)
-  const commentAvatar = JSON.parse(comment2.dataset.avatar)
-  for(let i = 0; i < commentContent.length; i++){
-    appendNewComment(commentContent[i], commentAvatar[i])
+    const profileAccount = JSON.parse(profile1.dataset.profileAccount)
+    const profileAvatar = JSON.parse(profile2.dataset.avatar)
+    for(let i = 0; i < profileAccount.length; i++){
+      append_relationship(profileAccount[i], profileAvatar[i])
+    }
+    // profile -------------------------- //
   }
 
-  // comment-btnが押されたら、comments_controller createを呼び出す
-  $('.comment_btn').on('click', () => {
-    const comment3 = document.getElementById
-    ('comment-show3')
-    const commentUser = comment3.dataset.userId
-    const content = $('#comment_content').val()
-    if (!content){
-      window.alert('コメントを入力してください')
-    }else {
-      axios.post(`/api/submissions/${submissionId}/comments`, {
-        comment: {content: content, user_id: commentUser}
-      })
-        .then((response) => {
-          const comment = response.data
-          // appendNewComment(comment)
-          console.log(comment)
-          $('#comment_content').val('')
-        })
-    }
-  })
 })
 // main ------------------------------ //
