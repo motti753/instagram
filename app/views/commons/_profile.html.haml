@@ -1,24 +1,34 @@
 .profile_header
-  = image_tag 'Tabs.png'
+  = link_to :back do
+    = image_tag 'Tabs.png'
   %p.profile_name
-    = profile.user_name(profile)
+    = @user.account
+  .profilePage_user_actionButton
+    -if @user != current_user
+      - if current_user&.has_followed?(@user)
+        = link_to 'Unfollow', account_unfollows_path(@user), data: {turbo_method: :post}
+      - else
+        = link_to 'Follow', account_follows_path(@user), data: {turbo_method: :post}
 
 .container
   .profilePage_user
-    .profilePage_user_image#profile-show{data: {profile_user_id: profile.user_id, current_user_id: current_user.id}}
-      - if (current_user.id == profile.user_id)
-        = image_tag profile.avatar_image
+    .profilePage_user_image#profile-show{data: {profile_user_id: @user.id, current_user_id: current_user.id}}
+      - if (current_user.id == @user.id)
+        = image_tag @user.avatar_image
         .profile_edit
-          = link_to 'Edit', edit_profile_path(profile.user_id)
+          = link_to 'Edit', edit_profile_path(@user.id)
       - else
-        = image_tag profile.avatar_image
+        = image_tag @user.avatar_image
     .profilePage_user_content
       .user_posts
-        %p.posts 44
+        %p.posts
+          = @user.count_post(@user)
         %p Posts
       .user_followers
-        %p.followers 110
-        %p Followers
+        %p.followers
+          = @user.count_follower(@user)
+        = link_to 'Followers', account_followers_path(account_id: @user.id)
       .user_following
-        %p.following 44
-        %p Following
+        %p.following
+          = @user.count_following(@user)
+        = link_to 'Following', account_followings_path(account_id: @user.id)

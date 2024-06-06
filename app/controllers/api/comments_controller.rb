@@ -7,8 +7,11 @@ class Api::CommentsController < Api::ApplicationController
     @avatar = []
     @comments.each do |comment|
       @profile = Profile.find(comment.user_id)
-      # @avatar.push(Rails.application.routes.url_helpers.rails_representation_url(@profile.avatar.variant({}), only_path: true))
-      @avatar.push(url_for(@profile.avatar_image))
+      if @profile.avatar&.attached?
+        @avatar.push(url_for(@profile.avatar_image))
+      else
+        @avatar.push(url_for('/assets/default-avatar-12a3f7379a4333007fa16fb67297f8a31c88580ccdaf11eb0be7323847c5641a.png'))
+      end
     end
 
     @contents.to_json

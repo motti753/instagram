@@ -1,0 +1,9 @@
+.profile_header
+  = link_to :back do
+    = image_tag 'Tabs.png'
+  %p.head_name Followings
+
+.container
+  .profile_data#profile-show1{data: {profile_account: @account}}
+  .profile_data#profile-show2{data: {avatar: @avatar}}
+  .profile_container

@@ -26,6 +26,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :accounts, only: [:show] do
+    resources :follows, only: [:create]
+    resources :unfollows, only: [:create]
+    resources :followers, only: [:index]
+    resources :followings, only: [:index]
+  end
+
   namespace :api do
     scope 'submissions/:submission_id' do
       resources :comments, only: [:index]

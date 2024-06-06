@@ -11,9 +11,18 @@
     height: 20px;
   }
 
-  .profile_name {
+  .profile_name,
+  .head_name {
     margin: auto;
     font-size: 1.2em;
+  }
+
+  .profilePage_user_actionButton {
+    a {
+      color: #bdbdbd;
+      font-size: 1em;
+      font-weight: 700;
+    }
   }
 }
 
@@ -43,7 +52,7 @@
   justify-content: center;
   align-items: center;
 
-  p {
+  a, p {
     color: rgb(158, 158, 158);
   }
 
@@ -53,3 +62,28 @@
     color: var.$text-base-color;
   }
 }
+
+/* フォローユーザ一覧 */
+.profile_group {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  width: 80%;
+  margin-left: 5%;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #bdbdbd;
+
+  img {
+    height: 50px;
+    width: 50px;
+  }
+
+  .term {
+    color: #bdbdbd;
+  }
+}
+
+.profile_group + .profile_group {
+  margin-top: 2em;
+}
+/* フォローユーザ一覧 */

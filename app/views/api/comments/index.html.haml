@@ -4,7 +4,8 @@
     .comment_data#comment-show1{data: {comment_content: @contents}}
     .comment_data#comment-show2{data: {avatar: @avatar}}
     .comment_data#comment-show3{data: {user_id: current_user.id}}
-    = image_tag 'Tabs.png', class: 'back_img'
+    = link_to :back do
+      = image_tag 'Tabs.png', class: 'back_img'
     %p Comment
   .comments_container
   .new_comment
