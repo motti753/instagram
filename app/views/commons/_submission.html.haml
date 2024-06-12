@@ -1,31 +1,30 @@
-= link_to submission_path(id: submission.id), remote: true do
-  -# .submission#submission-show{data: {submission_id: submission.id}}
-  .submission#submission-show{data: {submission_id: submission.id}}
-    .card
-      .contributor
-        .avatar
-          = link_to profile_path(profile_id: submission.user_id) do
-            = image_tag submission.user.avatar_image
-        .sub_content
-          %p=submission.user.account
-          %p.sub_content_grey 3 hours ago
-      .card_images
-        - submission.images.each do |image|
-          = image_tag image
-      .card_btn
-        - if user_signed_in?
-          - if current_user.has_liked?(submission)
-            .card_heart.active-heart
-              = image_tag 'like.png'
-          - else
-            .card_heart.inactive-heart
-              = image_tag 'before_like.png'
-        .card_comment
-          = link_to api_comments_path(submission.id) do
-            = image_tag 'Comment.png', class: 'comment_link'
-        .card_social
-          = image_tag 'share.png'
-      .card_desc
-        %p=submission.content
-        %p="#{submission.user.account} Summer holiday :3"
+.submission#submission-show{data: {submission_id: submission.id}}
+.card
+  .contributor
+    .avatar
+      = link_to profile_path(profile_id: submission.user_id) do
+        = image_tag submission.user.avatar_image
+    .sub_content
+      %p=submission.user.account
+      %p.sub_content_grey 3 hours ago
+  = link_to submission_path(id: submission.id) do
+    .card_images
+      - submission.images.each do |image|
+        = image_tag image
+    .card_btn
+      - if user_signed_in?
+        - if current_user.has_liked?(submission)
+          .card_heart.active-heart
+            = image_tag 'like.png'
+        - else
+          .card_heart.inactive-heart
+            = image_tag 'before_like.png'
+      .card_comment
+        = link_to api_comments_path(submission.id) do
+          = image_tag 'Comment.png', class: 'comment_link'
+      .card_social
+        = image_tag 'share.png'
+    .card_desc
+      %p=submission.content
+      %p="#{submission.user.account} Summer holiday :3"
 

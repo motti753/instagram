@@ -103,7 +103,7 @@ document.addEventListener('turbo:load', () => {
   // // profile -------------------------- //
 
   const currentUrl = window.location.href;
-  if(currentUrl.includes('submissions')){
+  if(currentUrl.includes('submissions') || currentUrl == 'http://localhost:3200/'){
     const submission = document.getElementById('submission-show')
     const submissionId = submission.dataset.submissionId
   
