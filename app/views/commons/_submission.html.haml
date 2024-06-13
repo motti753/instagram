@@ -25,6 +25,7 @@
       .card_social
         = image_tag 'share.png'
     .card_desc
-      %p=submission.content
+      %p.submission_content
+        =submission.content
       %p="#{submission.user.account} Summer holiday :3"
 
